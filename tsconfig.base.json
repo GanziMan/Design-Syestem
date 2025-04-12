@@ -1,0 +1,14 @@
+// tsconfig.base.json 예시
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "strict": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "paths": {
+      "design-system/*": ["packages/design-system/src/*"]
+    }
+  }
+}

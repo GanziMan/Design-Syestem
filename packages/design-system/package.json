@@ -1,0 +1,15 @@
+{
+  "name": "design-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.4",
+    "@radix-ui/react-dialog": "^1.1.7",
+    "@radix-ui/react-dropdown-menu": "^2.1.7",
+    "@types/react": "^19.1.1",
+    "@vanilla-extract/integration": "^8.0.1",
+    "react": "^19.1.0",
+    "typescript": "^5.8.3"
+  }
+}
