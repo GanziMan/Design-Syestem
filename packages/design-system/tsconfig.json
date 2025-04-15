@@ -2,11 +2,15 @@
   "extends": "../../tsconfig.base.json",
   "display": "Design System",
   "compilerOptions": {
+    "target": "ES6",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
     "outDir": "dist", // 빌드 결과물이 들어갈 폴더
     "rootDir": "src", // 소스 코드가 위치한 폴더
     "composite": true, // 프로젝트 참조(Project References) 설정 (필요 시)
     "declaration": true, // 타입 선언 파일 생성 등
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

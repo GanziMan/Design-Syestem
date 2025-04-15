@@ -1,4 +1,3 @@
-// tsconfig.base.json 예시
 {
   "compilerOptions": {
     "baseUrl": ".",
@@ -8,7 +7,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "paths": {
-      "design-system/*": ["packages/design-system/src/*"]
+      "design-system/*": ["packages/design-system/*", "apps/*"]
     }
   }
 }
