@@ -11,6 +11,6 @@
     "declaration": true, // 타입 선언 파일 생성 등
     "skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "vite.config.ts"],
+  "include": ["src/**/*", "**/*.ts", "**/*.tsx"]
 }
