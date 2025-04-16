@@ -5,20 +5,35 @@ import {
   SelectItem,
   SelectTrigger,
   SelectViewPort,
-} from "./Select.css"; // 스타일을 올바르게 import
+} from "./Select.css";
 
 type SelectProps = {
   options: Array<{
     value: string;
     label: string;
   }>;
+  placeholder?: string;
+  onChange?: (value: string) => void;
+  defaultValue?: string;
+  disabled?: boolean;
 };
 
-const Select: React.FC<SelectProps> = ({ options }) => {
+const Select: React.FC<SelectProps> = ({
+  options,
+  placeholder = "",
+  onChange,
+  defaultValue,
+  disabled = false,
+}) => {
   return (
-    <SelectPrimitive.Root>
-      <SelectPrimitive.Trigger className={SelectTrigger}>
-        <SelectPrimitive.Value placeholder="" />
+    <SelectPrimitive.Root onValueChange={onChange} defaultValue={defaultValue}>
+      <SelectPrimitive.Trigger
+        className={SelectTrigger}
+        disabled={disabled}
+        aria-label="Select an option"
+        role="combobox"
+      >
+        <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +56,7 @@ const Select: React.FC<SelectProps> = ({ options }) => {
           sideOffset={4}
           align="start"
           avoidCollisions
+          aria-live="polite" // 화면 리더에게 실시간 업데이트 알리기
         >
           <SelectPrimitive.ScrollUpButton />
           <SelectPrimitive.Viewport className={SelectViewPort}>
@@ -49,6 +65,7 @@ const Select: React.FC<SelectProps> = ({ options }) => {
                 className={SelectItem}
                 key={option.value}
                 value={option.value}
+                aria-label={`Option: ${option.label}`}
               >
                 <SelectPrimitive.ItemText>
                   {option.label}

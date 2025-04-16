@@ -9,6 +9,7 @@ export const SelectTrigger = style({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+  outline: "none",
 });
 
 export const SelectContent = style({
@@ -28,7 +29,6 @@ export const SelectItem = style({
   justifyContent: "center",
   userSelect: "none",
   outline: "none",
-
   ":first-child": {
     borderTopLeftRadius: "12px",
     borderTopRightRadius: "12px",
@@ -38,5 +38,4 @@ export const SelectItem = style({
     borderBottomRightRadius: "12px",
     borderTop: "none",
   },
-  ":hover": {},
 });
