@@ -1,3 +1,13 @@
+// Polyfill for scrollIntoView in JSDOM
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}
+
+// Polyfill for pointer capture in JSDOM (Radix Popper)
+if (!Element.prototype.hasPointerCapture) {
+  Element.prototype.hasPointerCapture = () => false;
+}
+
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi } from "vitest";
@@ -32,45 +42,14 @@ describe("Select 컴포넌트 단위 테스트", () => {
       />
     );
 
-    // When: 사용자가 선택 영역(예: combobox)을 클릭하여 옵션 드롭다운을 연다
+    // When: 사용자가 드롭다운을 클릭하여 옵션을 선택
     const selectToggle = screen.getByRole("combobox");
     const user = userEvent.setup();
-    console.log("test:", user.click(selectToggle));
-    user.click(selectToggle);
+    await user.click(selectToggle);
+    const optionItem = await screen.findByRole("option", { name: "Apple" });
+    await user.click(optionItem);
 
-    // // Then: 특정 옵션(예: Banana)이 드롭다운에 보여야 한다.
-    // const optionItem = await screen.findByRole("option", { name: /banana/i });
-    // expect(optionItem);
-
-    // // Wchen: 해당 옵션을 클릭하면 onChange 이벤트가 호출되어야 한다.
-    // await user.click(optionItem);
-
-    // // Then: onChange 핸들러가 옵션 값 'banana'를 포함한 이벤트 객체를 전달하면서 호출된다.
-    // expect(handleChange).toHaveBeenCalledWith(
-    //   expect.objectContaining({ value: "banana" })
-    // );
+    // Then: onChange 핸들러가 호출되어 값이 변경된 것을 검증
+    expect(handleChange).toHaveBeenCalledWith("apple");
   });
-
-  // it("키보드 입력을 통해 옵션이 선택된다", async () => {
-  //   // Given: onChange 핸들러를 모킹한 상태로 컴포넌트를 렌더링
-  //   const handleChange = vi.fn();
-  //   render(
-  //     <Select
-  //       options={options}
-  //       onChange={handleChange}
-  //       placeholder="Select an option"
-  //     />
-  //   );
-
-  //   const user = userEvent.setup();
-  //   // When: 사용자가 키보드로 select 영역에 포커스를 주고 화살표 키 및 Enter 키로 옵션 선택
-  //   const selectToggle = screen.getByRole("combobox");
-  //   selectToggle.focus();
-  //   await user.keyboard("{ArrowDown}"); // 첫 번째 옵션(apple)에서 두 번째 옵션(바나나)로 이동한다고 가정
-  //   await user.keyboard("{Enter}"); // 선택 확정
-
-  //   // Then: onChange 핸들러가 호출되어 값이 변경된 것을 검증
-  //   expect(handleChange).toHaveBeenCalled();
-  //   // 옵션 값 등 보다 구체적인 검증을 위해 expect.objectContaining({ value: 'banana' }) 등으로 확인할 수도 있음
-  // });
 });
