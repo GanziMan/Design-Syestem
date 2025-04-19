@@ -1,16 +1,20 @@
+"use client";
+
 import { type JSX } from "react";
+import { type PropsWithChildren } from "react";
+
+type CardProps = PropsWithChildren<{
+  className?: string;
+  title: string;
+  href: string;
+}>;
 
 export function Card({
   className,
   title,
   children,
   href,
-}: {
-  className?: string;
-  title: string;
-  children: React.ReactNode;
-  href: string;
-}): JSX.Element {
+}: CardProps): JSX.Element {
   return (
     <a
       className={className}

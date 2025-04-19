@@ -1,11 +1,11 @@
+"use client";
 import { type JSX } from "react";
+import { type PropsWithChildren } from "react";
 
-export function Code({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
+export type CodeProps = PropsWithChildren<{
   className?: string;
-}): JSX.Element {
+}>;
+
+export function Code({ children, className }: CodeProps): JSX.Element {
   return <code className={className}>{children}</code>;
 }

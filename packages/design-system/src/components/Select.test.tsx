@@ -1,4 +1,3 @@
-// Polyfill for scrollIntoView in JSDOM
 if (!Element.prototype.scrollIntoView) {
   Element.prototype.scrollIntoView = () => {};
 }
